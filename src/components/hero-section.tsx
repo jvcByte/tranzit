@@ -16,8 +16,8 @@ export default function HeroSection() {
                     <div className="py-24 md:pb-32 lg:pb-36 lg:pt-72">
                         <div className="relative mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
                             <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
-                                <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-16 xl:text-7xl">Build 10x Faster with NS</h1>
-                                <p className="mt-8 max-w-2xl text-balance text-lg">Highly customizable components for building modern websites and applications you mean it.</p>
+                                <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-16 xl:text-7xl">Moving You Forward</h1>
+                                <p className="mt-8 max-w-2xl text-balance text-lg">Africa&apos;s most trusted ride-sharing platform built for the next generation. Fast, fresh, and forward-thinking mobility that connects young urban commuters to affordable, safe, and seamless experiences.</p>
 
                                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                                     <Button
@@ -25,7 +25,7 @@ export default function HeroSection() {
                                         size="lg"
                                         className="h-12 rounded-full pl-5 pr-3 text-base">
                                         <Link href="#link">
-                                            <span className="text-nowrap">Start Building</span>
+                                            <span className="text-nowrap">Get Moving Now</span>
                                             <ChevronRight className="ml-1" />
                                         </Link>
                                     </Button>
@@ -36,7 +36,7 @@ export default function HeroSection() {
                                         variant="ghost"
                                         className="h-12 rounded-full px-5 text-base hover:bg-zinc-950/5 dark:hover:bg-white/5">
                                         <Link href="#link">
-                                            <span className="text-nowrap">Request a demo</span>
+                                            <span className="text-nowrap">Learn More</span>
                                         </Link>
                                     </Button>
                                 </div>
@@ -57,7 +57,7 @@ export default function HeroSection() {
                     <div className="group relative m-auto max-w-7xl px-6">
                         <div className="flex flex-col items-center md:flex-row">
                             <div className="md:max-w-44 md:border-r md:pr-6">
-                                <p className="text-end text-sm">Powering the best teams</p>
+                                <p className="text-end text-sm">Top companies use Tranzit</p>
                             </div>
                             <div className="relative py-6 md:w-[calc(100%-11rem)]">
                                 <InfiniteSlider
