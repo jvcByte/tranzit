@@ -49,7 +49,7 @@ export default function LoginPage() {
                                     variant="link"
                                     size="sm">
                                     <Link
-                                        href="#"
+                                        href="/forgot-password"
                                         className="link intent-info variant-ghost text-sm">
                                         Forgot your Password ?
                                     </Link>
