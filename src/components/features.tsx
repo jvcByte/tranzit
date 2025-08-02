@@ -5,10 +5,10 @@ import { BorderTrail } from '@/components/motion-primitives/border-trail'
 
 export default function Features() {
     return (
-        <section className="bg-zinc-50 py-16 md:py-32 dark:bg-transparent">
+        <section className="bg-zinc-50 py-12 md:py-16 dark:bg-inherit">
             <div className="@container mx-auto max-w-5xl px-6">
                 <div className="text-center">
-                    <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Designed to cover your needs</h2>
+                    <h2 className="mb-8 text-balance text-4xl font-semibold lg:text-5xl">Designed to cover your needs</h2>
                     <p className="mt-4">Ready to transform how you move through your city? Join the movement that&apos;s redefining urban transport across Africa. With Tranzit, every ride is a step toward a smarter, safer, and more connected tomorrow.</p>
                 </div>
                 <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 *:text-center md:mt-16">
