@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Settings2, Sparkles, Zap } from 'lucide-react'
 import { ReactNode } from 'react'
+import { BorderTrail } from '@/components/motion-primitives/border-trail'
 
 export default function Features() {
     return (
@@ -11,7 +12,16 @@ export default function Features() {
                     <p className="mt-4">Ready to transform how you move through your city? Join the movement that&apos;s redefining urban transport across Africa. With Tranzit, every ride is a step toward a smarter, safer, and more connected tomorrow.</p>
                 </div>
                 <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 *:text-center md:mt-16">
-                    <Card className="group shadow-zinc-950/5">
+                    
+                    <Card className="group shadow-zinc-950/5 relative">
+                        <BorderTrail
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                boxShadow: '0px 0px 280px 200px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
+                                // Optionally: width: '100%', height: '100%',
+                            }}
+                            size={100}
+                        />
                         <CardHeader className="pb-3">
                             <CardDecorator>
                                 <Zap
@@ -28,7 +38,15 @@ export default function Features() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group shadow-zinc-950/5">
+                    <Card className="group shadow-zinc-950/5 relative">
+                        <BorderTrail
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                boxShadow: '0px 0px 280px 200px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
+                                // Optionally: width: '100%', height: '100%',
+                            }}
+                            size={100}
+                        />
                         <CardHeader className="pb-3">
                             <CardDecorator>
                                 <Settings2
@@ -45,7 +63,15 @@ export default function Features() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group shadow-zinc-950/5">
+                    <Card className="group shadow-zinc-950/5 relative">
+                        <BorderTrail
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                boxShadow: '0px 0px 280px 200px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
+                                // Optionally: width: '100%', height: '100%',
+                            }}
+                            size={100}
+                        />
                         <CardHeader className="pb-3">
                             <CardDecorator>
                                 <Sparkles
@@ -62,7 +88,15 @@ export default function Features() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group shadow-zinc-950/5">
+                    <Card className="group shadow-zinc-950/5 relative">
+                        <BorderTrail
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                boxShadow: '0px 0px 280px 200px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
+                                // Optionally: width: '100%', height: '100%',
+                            }}
+                            size={100}
+                        />
                         <CardHeader className="pb-3">
                             <CardDecorator>
                                 <Sparkles
@@ -79,7 +113,15 @@ export default function Features() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group shadow-zinc-950/5">
+                    <Card className="group shadow-zinc-950/5 relative">
+                        <BorderTrail
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                boxShadow: '0px 0px 280px 200px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
+                                // Optionally: width: '100%', height: '100%',
+                            }}
+                            size={100}
+                        />
                         <CardHeader className="pb-3">
                             <CardDecorator>
                                 <Sparkles
@@ -96,7 +138,15 @@ export default function Features() {
                         </CardContent>
                     </Card>
 
-                    <Card className="group shadow-zinc-950/5">
+                    <Card className="group shadow-zinc-950/5 relative">
+                        <BorderTrail
+                            className="pointer-events-none absolute inset-0"
+                            style={{
+                                boxShadow: '0px 0px 280px 200px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
+                                // Optionally: width: '100%', height: '100%',
+                            }}
+                            size={100}
+                        />
                         <CardHeader className="pb-3">
                             <CardDecorator>
                                 <Sparkles
