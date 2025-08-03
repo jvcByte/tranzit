@@ -12,11 +12,23 @@ export const signUp = async () => {
     })
 }
 
-export const signIn = async () => {
-    await auth.api.signInEmail({
-        body: {
-            email: "jvc@email.com",
-            password: "password",
+export const signIn = async (email: string, password: string) => {
+    try {
+        await auth.api.signInEmail({
+            body: {
+                email,
+                password,
+            }
+        })
+        return {
+            success: true,
+            message: "User signed in successfully",
         }
-    })
+    } catch (error) {
+        const e = error as Error
+        return {
+            success: false,
+            message: e.message || "User sign in failed",
+        }
+    }
 }

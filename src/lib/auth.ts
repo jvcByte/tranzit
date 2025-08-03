@@ -1,4 +1,5 @@
 import { betterAuth } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
  
 export const auth = betterAuth({
@@ -14,10 +15,12 @@ export const auth = betterAuth({
     enabled: true,
   },
   
-  socialProviders: {
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-    },
-  },
+  // socialProviders: {
+  //   github: {
+  //     clientId: process.env.GITHUB_CLIENT_ID as string,
+  //     clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+  //   },
+  // },
+
+  plugins: [nextCookies()]
 })
