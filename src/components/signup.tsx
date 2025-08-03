@@ -23,34 +23,6 @@ export default function LoginPage() {
                     </div>
 
                     <div className="mt-6 space-y-6">
-                        <div className="grid grid-cols-2 gap-3">
-                            <div className="space-y-2">
-                                <Label
-                                    htmlFor="firstname"
-                                    className="block text-sm">
-                                    Firstname
-                                </Label>
-                                <Input
-                                    type="text"
-                                    required
-                                    name="firstname"
-                                    id="firstname"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label
-                                    htmlFor="lastname"
-                                    className="block text-sm">
-                                    Lastname
-                                </Label>
-                                <Input
-                                    type="text"
-                                    required
-                                    name="lastname"
-                                    id="lastname"
-                                />
-                            </div>
-                        </div>
 
                         <div className="space-y-2">
                             <Label
