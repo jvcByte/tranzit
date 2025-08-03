@@ -20,6 +20,7 @@ import { toast } from "sonner"
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
+import { authClient } from '@/lib/auth-client'
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -39,6 +40,12 @@ export default function LoginPage() {
             password: "",
         },
     })
+
+    const signInWithGoogle = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        })
+    }
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -149,6 +156,7 @@ export default function LoginPage() {
                         <div className="grid grid-cols-2 gap-3">
                             <Button
                                 type="button"
+                                onClick={signInWithGoogle}
                                 variant="outline">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
