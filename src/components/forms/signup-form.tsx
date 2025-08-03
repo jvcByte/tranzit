@@ -4,6 +4,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
 
+import { signUp } from '@/lib/auth/actions'
+
 export default function LoginPage() {
     return (
         <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
@@ -28,11 +30,11 @@ export default function LoginPage() {
                             <Label
                                 htmlFor="email"
                                 className="block text-sm">
-                                Username
+                                Email
                             </Label>
                             <Input
                                 type="email"
-                                required
+                                // required
                                 name="email"
                                 id="email"
                             />
@@ -48,14 +50,14 @@ export default function LoginPage() {
                             </div>
                             <Input
                                 type="password"
-                                required
+                                // required
                                 name="pwd"
                                 id="pwd"
                                 className="input sz-md variant-mixed"
                             />
                         </div>
 
-                        <Button className="w-full">Sign Up</Button>
+                        <Button className="w-full" onClick={signUp}>Sign Up</Button>
                     </div>
 
                     <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">

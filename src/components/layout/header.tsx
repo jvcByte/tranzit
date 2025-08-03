@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useScroll, motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { ModeToggle } from './mode-toggle'
+import { ModeToggle } from '../common/mode-toggle'
 
 const menuItems = [
     { name: 'Features', href: '#link' },
@@ -289,7 +289,7 @@ export const HeroHeader = () => {
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ duration: 0.2 }}>
                                 <ModeToggle />
-                                
+
                             </motion.div>
                             <motion.div
                                 whileHover={{ scale: 1.05 }}

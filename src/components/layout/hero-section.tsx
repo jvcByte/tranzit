@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { HeroHeader } from "@/components/header"
+import { HeroHeader } from "@/components/layout/header"
 import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
 import { ProgressiveBlur } from '@/components/motion-primitives/progressive-blur'
 import { ChevronRight } from 'lucide-react'
@@ -50,7 +50,7 @@ export default function HeroSection() {
                                 playsInline
                                 className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
                                 src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"></video>
-                                {/* // src="/bg1.webm"></video> */}
+                            {/* // src="/bg1.webm"></video> */}
                         </div>
                     </div>
                 </section>
