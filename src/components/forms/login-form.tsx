@@ -46,8 +46,10 @@ export default function LoginPage() {
         setIsGoogleLoading(true);
         try {
             await authClient.signIn.social({
-                provider: "google"
+                provider: "google",
+                callbackURL: "/dashboard",
             });
+            
             toast.success('Redirecting to Google...', {
                 className: "toast-success",
                 duration: 3000,
