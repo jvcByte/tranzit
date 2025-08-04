@@ -172,7 +172,7 @@ export default function SignupPage() {
                         <div className="mt-4 space-y-6">
                             <Button
                                 type="button"
-                                onClick={signInWithGoogle}
+                                onClick={signUpWithGoogle}
                                 className='w-full flex items-center justify-center gap-2'
                                 variant="outline"
                                 disabled={isGoogleLoading || isLoading}
