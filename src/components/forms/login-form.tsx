@@ -4,7 +4,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import { signIn } from '@/lib/auth/actions'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -65,19 +64,22 @@ export default function LoginPage() {
         }
     }
 
-    // 2. Define a submit handler.
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    const signInWithEmail = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true)
 
-        const { success, message } = await signIn(values.email, values.password)
-        if (success) {
-            toast.success(message as string, {
+        const { data, error } = await authClient.signIn.email({
+            email: values.email,
+            password: values.password,
+        })
+
+        if (data) {
+            toast.success("Login successful", {
                 className: "toast-success",
                 duration: 4000,
             })
             router.push("/dashboard")
         } else {
-            toast.error(message as string, {
+            toast.error(error?.message as string, {
                 className: "toast-error",
                 duration: 4000,
             })
@@ -85,10 +87,11 @@ export default function LoginPage() {
 
         setIsLoading(false)
     }
+
     return (
         <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-muted m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
+                <form onSubmit={form.handleSubmit(signInWithEmail)} className="space-y-8 bg-muted m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
                     <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
                         <div className="text-center">
                             <Link

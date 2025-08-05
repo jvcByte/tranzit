@@ -28,6 +28,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { authClient } from "@/lib/auth-client"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { Loader2 } from "lucide-react"
 
 export function NavUser({
   user,
@@ -38,6 +43,31 @@ export function NavUser({
     avatar: string
   }
 }) {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const logout = async () => {
+    setIsLoading(true)
+
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          setIsLoading(false)
+          toast.success("Logout successful", {
+            className: "toast-success",
+            duration: 4000,
+          })
+          router.push("/")
+        },
+        onError: () => {
+          setIsLoading(false)
+          toast.error("Logout failed", {
+            className: "toast-error",
+            duration: 4000,
+          })
+        },
+      }
+    })
+  }
   const { isMobile } = useSidebar()
 
   return (
@@ -98,9 +128,16 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <IconLogout />
-              Log out
+            <DropdownMenuItem
+              onClick={() => logout()}
+              className="cursor-pointer"
+            >
+              <IconLogout className="mr-2 h-4 w-4" />
+              {isLoading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                "Log out"
+              )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

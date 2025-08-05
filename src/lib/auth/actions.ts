@@ -2,13 +2,13 @@
 
 import { auth } from "@/lib/auth";
 
-export const signUp = async (email: string, password: string) => {
+const signUp = async (email: string, password: string, name: string) => {
     try {
         await auth.api.signUpEmail({
             body: {
                 email,
                 password,
-                name: "John Doe",
+                name,
             }
         })
         return {
@@ -24,7 +24,7 @@ export const signUp = async (email: string, password: string) => {
     }
 }
 
-export const signIn = async (email: string, password: string) => {
+const signIn = async (email: string, password: string) => {
     try {
         await auth.api.signInEmail({
             body: {
@@ -44,3 +44,5 @@ export const signIn = async (email: string, password: string) => {
         }
     }
 }
+
+export { signUp, signIn };

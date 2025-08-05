@@ -4,7 +4,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import { signUp } from '@/lib/auth/actions'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -25,6 +24,7 @@ import { authClient } from '@/lib/auth-client'
 const formSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
+    username: z.string().min(3),
 })
 
 export default function SignupPage() {
@@ -39,6 +39,7 @@ export default function SignupPage() {
         defaultValues: {
             email: "",
             password: "",
+            username: "",
         },
     })
 
@@ -46,7 +47,8 @@ export default function SignupPage() {
         setIsGoogleLoading(true);
         try {
             await authClient.signIn.social({
-                provider: "google"
+                provider: "google",
+                callbackURL: "/dashboard",
             });
             toast.success('Redirecting to Google...', {
                 className: "toast-success",
@@ -64,18 +66,23 @@ export default function SignupPage() {
     }
 
     // 2. Define a submit handler.
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    async function signUpWithEmail(values: z.infer<typeof formSchema>) {
         setIsLoading(true)
 
-        const { success, message } = await signUp(values.email, values.password)
-        if (success) {
-            toast.success(message as string, {
+        const { data, error } = await authClient.signUp.email({
+            email: values.email,
+            password: values.password,
+            name: values.username,
+        })
+
+        if (data) {
+            toast.success("Account created successfully", {
                 className: "toast-success",
                 duration: 4000,
             })
             router.push("/dashboard")
         } else {
-            toast.error(message as string, {
+            toast.error(error?.message || "Failed to create account. Try Again", {
                 className: "toast-error",
                 duration: 4000,
             })
@@ -86,9 +93,9 @@ export default function SignupPage() {
     return (
         <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-muted m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
+                <form onSubmit={form.handleSubmit(signUpWithEmail)} className="space-y-8 bg-muted m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
                     <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
-                        <div className="text-center">
+                        <div className="text-center mb-4">
                             <Link
                                 href="/"
                                 aria-label="go home"
@@ -99,7 +106,26 @@ export default function SignupPage() {
                             <p className="text-sm">Welcome! Sign up to continue</p>
                         </div>
 
-                        <div className="mt-6 space-y-6">
+                        <div className="space-y-2">
+                            <FormField
+                                control={form.control}
+                                name="username"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Username</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="username"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="mt-6 space-y-6 grid grid-cols-2 gap-1.5">
                             <div className="space-y-2">
                                 <FormField
                                     control={form.control}
@@ -109,7 +135,7 @@ export default function SignupPage() {
                                             <FormLabel>Email</FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder="email@example.com"
+                                                    placeholder="name@example.com"
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -133,35 +159,19 @@ export default function SignupPage() {
                                                     {...field}
                                                 />
                                             </FormControl>
-                                            <div className="flex justify-end mt-2">
-                                                <Button
-                                                    asChild
-                                                    variant="link"
-                                                    size="sm"
-                                                    className="p-0 h-auto -mt-1"
-                                                >
-                                                    <Link
-                                                        href="/login"
-                                                        className="text-sm text-muted-foreground hover:text-primary"
-                                                    >
-                                                        Already have an account?
-                                                    </Link>
-                                                </Button>
-                                            </div>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                 />
                             </div>
-
-                            <Button className="w-full" type="submit" disabled={isLoading}>
-                                {isLoading ?
-                                    (<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    ) : (
-                                        "Sign Up"
-                                    )}
-                            </Button>
                         </div>
+                        <Button className="w-full mt-2" type="submit" disabled={isLoading}>
+                            {isLoading ?
+                                (<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                ) : (
+                                    "Sign Up"
+                                )}
+                        </Button>
 
                         <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                             <hr className="border-dashed" />
@@ -216,12 +226,12 @@ export default function SignupPage() {
 
                     <div className="p-3">
                         <p className="text-accent-foreground text-center text-sm">
-                            Don&apos;t have an account ?
+                            Already have and account ?
                             <Button
                                 asChild
                                 variant="link"
                                 className="px-2">
-                                <Link href="/signup">Create account</Link>
+                                <Link href="/login">Log In</Link>
                             </Button>
                         </p>
                     </div>
