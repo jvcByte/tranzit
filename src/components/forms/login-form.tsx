@@ -89,7 +89,7 @@ export default function LoginPage() {
     }
 
     return (
-        <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
+        <section className="flex w-full max-w-[100vw] min-h-[calc(100vh-var(--header-height)-var(--footer-height))] bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(signInWithEmail)} className="space-y-8 bg-muted m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
                     <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">

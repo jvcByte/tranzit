@@ -44,6 +44,8 @@
 }
 
 :root {
+  --header-height: 4rem;  /* 64px */
+  --footer-height: 20rem; /* Adjust based on your footer's actual height */
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.147 0.004 49.25);
