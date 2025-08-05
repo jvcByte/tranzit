@@ -9,10 +9,9 @@ import Image from 'next/image'
 import { ModeToggle } from '../common/mode-toggle'
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'About', href: '#link' },
+    { name: 'Meet the Team', href: '#link' },
+    { name: "Partners' Program", href: '#link' },
+    { name: "Afiliates' program", href: '#link' },
 ]
 
 export const HeroHeader = () => {
@@ -111,7 +110,7 @@ export const HeroHeader = () => {
                                 <Button
                                     asChild
                                     size="sm"
-                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
+                                    className={cn('hidden', isScrolled && 'lg:inline-flex')}>
                                     <Link href="/signup">
                                         <span>Get Started</span>
                                     </Link>
