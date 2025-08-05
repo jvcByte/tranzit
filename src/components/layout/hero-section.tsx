@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button'
 import { HeroHeader } from "@/components/layout/header"
 import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
 import { ProgressiveBlur } from '@/components/motion-primitives/progressive-blur'
-import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
+import { JoinTheWaitlistDialog } from '@/components/common/join-the-wait-list-dialog'
 
 export default function HeroSection() {
     return (
@@ -20,15 +20,7 @@ export default function HeroSection() {
                                 <p className="mt-8 max-w-2xl text-balance text-lg">Africa&apos;s most trusted ride-sharing platform built for the next generation. Fast, fresh, and forward-thinking mobility that connects young urban commuters to affordable, safe, and seamless experiences.</p>
 
                                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
-                                    <Button
-                                        asChild
-                                        size="lg"
-                                        className="h-12 rounded-full pl-5 pr-3 text-base">
-                                        <Link href="#link">
-                                            <span className="text-nowrap">Get Moving Now</span>
-                                            <ChevronRight className="ml-1" />
-                                        </Link>
-                                    </Button>
+                                    <JoinTheWaitlistDialog />
                                     <Button
                                         key={2}
                                         asChild
