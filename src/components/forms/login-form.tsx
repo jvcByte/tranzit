@@ -138,6 +138,7 @@ export default function LoginPage() {
                                                     {...field}
                                                 />
                                             </FormControl>
+                                            <FormMessage />
                                             <div className="flex justify-end mt-2">
                                                 <Button
                                                     asChild
@@ -153,7 +154,6 @@ export default function LoginPage() {
                                                     </Link>
                                                 </Button>
                                             </div>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />

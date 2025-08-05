@@ -122,42 +122,40 @@
 }
 
 
-
-/* src/styles/globals.css or components.css */
-
-/* Success toast - White background with green accents */
+/* Success toast */
 .toast-success {
-    background: white !important;
-    color: #15803d !important; /* green-700 - thick green text */
-    border: 2px solid #22c55e !important; /* green-500 - green border */
-    border-radius: 12px !important;
-    padding: 16px !important;
-    font-weight: 700 !important; /* thick/bold text */
-    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.15) !important; /* subtle green shadow */
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    border: 1px solid var(--primary) !important;
+    border-radius: var(--radius) !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
     backdrop-filter: blur(10px) !important;
 }
 
-/* Error toast - White background with red accents */
+/* Error toast */
 .toast-error {
-    background: white !important;
-    color: #dc2626 !important; /* red-600 - thick red text */
-    border: 2px solid #ef4444 !important; /* red-500 - red border */
-    border-radius: 12px !important;
-    padding: 16px !important;
-    font-weight: 700 !important; /* thick/bold text */
-    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15) !important; /* subtle red shadow */
+    background: var(--background) !important;
+    color: var(--destructive-foreground) !important;
+    border: 1px solid var(--destructive) !important;
+    border-radius: var(--radius) !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
     backdrop-filter: blur(10px) !important;
 }
 
-/* Loading toast - White background with blue accents */
+/* Loading toast */
 .toast-loading {
-    background: white !important;
-    color: #2563eb !important; /* blue-600 - thick blue text */
-    border: 2px solid #3b82f6 !important; /* blue-500 - blue border */
-    border-radius: 12px !important;
-    padding: 16px !important;
-    font-weight: 700 !important; /* thick/bold text */
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15) !important; /* subtle blue shadow */
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    border: 1px solid var(--muted-foreground) !important;
+    border-radius: var(--radius) !important;
+    padding: 0.75rem 1rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
 }
 
 /* Custom animation */
@@ -178,10 +176,22 @@
     animation: slideInRight 0.3s ease-out !important;
 }
 
-/* Icon styling (if using icons) */
-.toast-success [data-icon],
-.toast-error [data-icon],
+/* Icon styling */
+.toast-success [data-icon] {
+    color: var(--primary) !important;
+}
+
+.toast-error [data-icon] {
+    color: var(--destructive) !important;
+}
+
 .toast-loading [data-icon] {
-    color: inherit !important;
-    font-weight: 700 !important;
+    color: var(--muted-foreground) !important;
+}
+
+/* Ensure text is readable in both light/dark modes */
+.dark .toast-success,
+.dark .toast-error,
+.dark .toast-loading {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
 }

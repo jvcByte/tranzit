@@ -1,3 +1,4 @@
+// src/lib/auth.ts
 import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
@@ -20,6 +21,13 @@ export const auth = betterAuth({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
+  },
+
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60 // 5 minutes cache
+    }
   },
 
   plugins: [nextCookies()]
