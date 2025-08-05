@@ -11,7 +11,7 @@ import { ModeToggle } from '../common/mode-toggle'
 const menuItems = [
     { name: 'Meet the Team', href: '#link' },
     { name: "Partners' Program", href: '#link' },
-    { name: "Afiliates' program", href: '#link' },
+    { name: "Afiliates' Program", href: '#link' },
 ]
 
 export const HeroHeader = () => {
@@ -58,7 +58,7 @@ export const HeroHeader = () => {
                         </div>
 
                         <div className="absolute inset-0 m-auto hidden size-fit lg:block">
-                            <ul className="flex gap-8 text-sm">
+                            <ul className="flex gap-8 text-md font-semibold">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
                                         <Link
