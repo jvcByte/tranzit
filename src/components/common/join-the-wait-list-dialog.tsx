@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
+import * as z from "zod/v3"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -23,9 +23,10 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { useState } from "react"
+import { authClient } from "@/lib/auth/auth-client"
 
 const formSchema = z.object({
     name: z.string().min(3, {
@@ -38,6 +39,7 @@ const formSchema = z.object({
 
 export function JoinTheWaitlistDialog() {
     const [isOpen, setIsOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,26 +48,37 @@ export function JoinTheWaitlistDialog() {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log('Form submitted with values:', values)
-        
-        // Here you would typically make an API call
-        // For example:
-        // await fetch('/api/waitlist', {
-        //     method: 'POST',
-        //     body: JSON.stringify(values),
-        // })
-        
-        // Show success toast
-        toast.success('🎉 You have been added to the waitlist! 🎉', {
-            description: 'Stay tuned for updates.',
-        })
-        
-        // Close the dialog
-        setIsOpen(false)
-        
-        // Reset form
-        form.reset()
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsLoading(true)
+        try {
+
+            const response = await authClient.waitlist.joinWaitlist({
+                name: values.name,
+                email: values.email
+            });
+            if (response.data) {
+                toast.success('🎉 You have been added to the waitlist! 🎉', {
+                    description: 'Stay tuned for updates.',
+                })
+            } else {
+                toast.error('Failed to join waitlist. Please try again.', {
+                    description: 'An unknown error occurred',
+                })
+            }
+
+            // Close the dialog
+            setIsOpen(false)
+
+            // Reset form
+            form.reset()
+        } catch (error) {
+            console.error('Error joining waitlist:', error)
+            toast.error('Failed to join waitlist. Please try again.', {
+                description: error instanceof Error ? error.message : 'An unknown error occurred',
+            })
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -85,7 +98,7 @@ export function JoinTheWaitlistDialog() {
                                 Be the first to know when we launch. Join our waitlist now.
                             </DialogDescription>
                         </DialogHeader>
-                        
+
                         <div className="space-y-4">
                             <FormField
                                 control={form.control}
@@ -114,14 +127,20 @@ export function JoinTheWaitlistDialog() {
                                 )}
                             />
                         </div>
-                        
+
                         <DialogFooter>
                             <DialogClose asChild>
                                 <Button type="button" variant="outline">
                                     Cancel
                                 </Button>
                             </DialogClose>
-                            <Button type="submit">Join the waitlist</Button>
+                            <Button type="submit">
+                                {isLoading ?
+                                    (<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    ) : (
+                                        "Join the waitlist"
+                                    )}
+                            </Button>
                         </DialogFooter>
                     </form>
                 </Form>

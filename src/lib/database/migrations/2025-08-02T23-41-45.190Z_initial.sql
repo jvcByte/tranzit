@@ -43,3 +43,33 @@ create table "verification" (
     "createdAt" timestamp, 
     "updatedAt" timestamp
     );
+
+create table "waitlist" (
+    "id" text not null primary key, 
+    "name" text not null, 
+    "email" text not null unique, 
+    "createdAt" timestamp not null, 
+    "updatedAt" timestamp not null
+    );
+
+create table "partner" (
+    "id" text not null primary key,
+    "userId" text not null unique references "user" ("id") on delete cascade,
+    "referralCode" text not null unique,
+    "totalEarnings" real not null default 0,
+    "type" text not null default 'partner',
+    "status" text not null default 'active',
+    "createdAt" timestamp not null default current_timestamp,
+    "updatedAt" timestamp not null default current_timestamp
+);
+
+create table "referrals" (
+    "id" text not null primary key,
+    "partnerId" text not null references "partner" ("id") on delete cascade,
+    "referredUserId" text references "user" ("id") on delete cascade,
+    "referralCode" text not null,
+    "commission" real,
+    "status" text,
+    "createdAt" timestamp not null default current_timestamp,
+    "updatedAt" timestamp not null default current_timestamp
+);

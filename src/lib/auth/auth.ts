@@ -2,8 +2,13 @@
 import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
- 
+import { partnersPlugin } from "@/lib/plugins/server/partners";
+import { waitlistPlugin } from "@/lib/plugins/server/waitlist"; 
 export const auth = betterAuth({
+  trustedOrigins: [
+    'http://localhost:3000',
+    'http://192.168.80.202:3000',
+  ],
 
   database: new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -26,9 +31,12 @@ export const auth = betterAuth({
   session: {
     cookieCache: {
       enabled: true,
-      maxAge: 5 * 60 // 5 minutes cache
+      maxAge: 7 * 60 * 60 * 24 // 5 days cache
     }
   },
 
-  plugins: [nextCookies()]
+  plugins: [
+    partnersPlugin(),
+    waitlistPlugin(),
+    nextCookies()]
 })
