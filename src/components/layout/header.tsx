@@ -41,7 +41,7 @@ export const HeroHeader = () => {
                                 <p className='text-[45px] font-700 font-bold text-[#99da3d]'>Tranzit</p>
                             </Link>
 
-                            <div className='flex items-center space-x-2'>
+                            <div className='flex items-center space-x-2 gap-4'>
                                 <button
                                     onClick={() => setMenuState(!menuState)}
                                     aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
