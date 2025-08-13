@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function FooterSection() {
     return (
         <footer className="py-4 md:py-8 bg-[#98d73e]">
-            <div className="mx-auto max-w-[1660px] px-6 flex justify-between items-center">
+            <div className="mx-auto max-w-[1660px] px-6 md:px-12 flex flex-col md:flex-row justify-between items-center">
                 <div className="my-8 flex flex-wrap justify-start gap-6">
                     <Link
                         href="#"
@@ -12,7 +12,7 @@ export default function FooterSection() {
                         aria-label="X/Twitter"
                         className="text-[#414547] hover:text-gray-600 block">
                         <svg
-                            className="size-12"
+                            className="md:size-12 size-8"
                             xmlns="http://www.w3.org/2000/svg"
                             width="1em"
                             height="1em"
@@ -29,7 +29,7 @@ export default function FooterSection() {
                         aria-label="LinkedIn"
                         className="text-[#414547] hover:text-gray-600 block">
                         <svg
-                            className="size-12"
+                            className="md:size-12 size-8"
                             xmlns="http://www.w3.org/2000/svg"
                             width="1em"
                             height="1em"
@@ -46,7 +46,7 @@ export default function FooterSection() {
                         aria-label="Instagram"
                         className="text-[#414547] hover:text-gray-600 block">
                         <svg
-                            className="size-12"
+                            className="md:size-12 size-8"
                             xmlns="http://www.w3.org/2000/svg"
                             width="1em"
                             height="1em"
