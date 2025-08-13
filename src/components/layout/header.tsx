@@ -31,7 +31,7 @@ export const HeroHeader = () => {
             <nav
                 data-state={menuState && 'active'}
                 className={cn('fixed z-20 w-full border-b transition-colors duration-150 bg-background', scrolled )}>
-                <div className="m-auto max-w-7xl px-6">
+                <div className="m-auto max-w-[1660px] px-6">
                     <div className="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full justify-between lg:w-auto">
                             <Link

@@ -1,151 +1,103 @@
 import React from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { TextEffect } from '@/components/motion-primitives/text-effect'
+import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
 import { HeroHeader } from "@/components/layout/header"
-import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
-import { ProgressiveBlur } from '@/components/motion-primitives/progressive-blur'
 import Image from 'next/image'
-import { JoinTheWaitlistDialog } from '@/components/common/join-the-wait-list-dialog'
+import { JoinTheWaitlistDialog } from '../common/join-the-wait-list-dialog'
+
+const transitionVariants = {
+    item: {
+        hidden: {
+            opacity: 0,
+            filter: 'blur(12px)',
+            y: 12,
+        },
+        visible: {
+            opacity: 1,
+            filter: 'blur(0px)',
+            y: 0,
+            transition: {
+                type: 'spring',
+                bounce: 0.3,
+                duration: 1.5,
+            },
+        },
+    },
+} as const;
 
 export default function HeroSection() {
     return (
         <>
             <HeroHeader />
-            <main className="overflow-x-hidden">
+
+            <main className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
                 <section>
-                    <div className="py-24 md:pb-32 lg:pb-36 lg:pt-72">
-                        <div className="relative mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
-                            <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
-                                <h1 className="mt-8 max-w-2xl text-balance text-5xl md:text-6xl lg:mt-16 xl:text-7xl">Moving You Forward</h1>
-                                <p className="mt-8 max-w-2xl text-balance text-lg">Africa&apos;s most trusted ride-sharing platform built for the next generation. Fast, fresh, and forward-thinking mobility that connects young urban commuters to affordable, safe, and seamless experiences.</p>
+                    <div className="relative mx-auto max-w-9xl px-6 pb-20 pt-32 lg:pt-48">
+                        <div className="relative z-10 mx-auto max-w-7xl text-center">
+                            <TextEffect
+                                preset="fade-in-blur"
+                                speedSegment={0.3}
+                                as="h1"
+                                className="text-balance font-black text-5xl md:text-9xl">
+                                Your Ride, Your Way!
+                            </TextEffect>
+                            <TextEffect
+                                per="line"
+                                preset="fade-in-blur"
+                                speedSegment={0.3}
+                                delay={0.5}
+                                as="p"
+                                className="mx-auto mt-6 max-w-5xl font-medium md:text-2xl text-pretty text-lg">
+                                Experience safe, reliable, and affordable rides with Tranzit, the new way to move around your city. Join our waiting list and be the first to ride when we launch
+                            </TextEffect>
+                            <AnimatedGroup
+                                variants={{
+                                    container: {
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.05,
+                                                delayChildren: 0.75,
+                                            },
+                                        },
+                                    },
+                                    ...transitionVariants,
+                                }}
+                                className="mt-6 md:mt-12">
+                                <div className="flex flex-col gap-2 items-center justify-center">
 
-                                <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
-                                    <JoinTheWaitlistDialog />
-                                    <Button
-                                        key={2}
-                                        asChild
-                                        size="lg"
-                                        variant="ghost"
-                                        className="h-12 rounded-full px-5 text-base hover:bg-zinc-950/5 dark:hover:bg-white/5">
-                                        <Link href="#link">
-                                            <span className="text-nowrap">Learn More</span>
-                                        </Link>
-                                    </Button>
+                                    <div className="absolute left-1/2 -translate-x-1/2 -top-8 md:-top-10 w-auto h-auto animate-shake ml-28 ">
+                                        <Image
+                                            src="/join-waitlist-arrow.svg"
+                                            alt="Join Waitlist Arrow"
+                                            width={24}
+                                            height={24}
+                                            className="w-14 h-16 md:w-16 md:h-16 scale-x-100"
+                                            priority
+                                        />
+                                    </div>
+                                    <div className="flex flex-col gap-2 items-center md:gap-4">
+                                        <JoinTheWaitlistDialog />
+                                        <Image
+                                            src="/trust-bar.svg"
+                                            alt="Trust By"
+                                            width={344}
+                                            height={75}
+                                            className="w-[244px] h-[45px] lg:w-[344px] lg:h-[75px] transition-all duration-300"
+                                            priority
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="aspect-2/3 absolute inset-1 -z-10 overflow-hidden rounded-3xl border border-black/10 lg:aspect-video lg:rounded-[3rem] dark:border-white/5">
-                            <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-                                // src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"></video>
-                            src="/bg1.webm"></video>
-                        </div>
-                    </div>
-                </section>
-                <section className="bg-background pb-2">
-                    <div className="group relative m-auto max-w-7xl px-6">
-                        <div className="flex flex-col items-center md:flex-row">
-                            <div className="md:max-w-44 md:border-r md:pr-6">
-                                <p className="text-end text-sm">Top companies use Tranzit</p>
-                            </div>
-                            <div className="relative py-6 md:w-[calc(100%-11rem)]">
-                                <InfiniteSlider
-                                    speedOnHover={20}
-                                    speed={40}
-                                    gap={112}>
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-5 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                            alt="Nvidia Logo"
-                                            height="20"
-                                            width="20"
-                                        />
-                                    </div>
-
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-4 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/column.svg"
-                                            alt="Column Logo"
-                                            height="16"
-                                            width="20"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-4 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/github.svg"
-                                            alt="GitHub Logo"
-                                            height="16"
-                                            width="20"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-5 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/nike.svg"
-                                            alt="Nike Logo"
-                                            height="20"
-                                            width="20"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-5 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                            alt="Lemon Squeezy Logo"
-                                            height="20"
-                                            width="20"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-4 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                            alt="Laravel Logo"
-                                            height="16"
-                                            width="20"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-7 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                            alt="Lilly Logo"
-                                            height="28"
-                                            width="20"
-                                        />
-                                    </div>
-
-                                    <div className="flex">
-                                        <Image
-                                            className="mx-auto h-6 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/openai.svg"
-                                            alt="OpenAI Logo"
-                                            height="24"
-                                            width="20"
-                                        />
-                                    </div>
-                                </InfiniteSlider>
-
-                                <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
-                                <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
-                                <ProgressiveBlur
-                                    className="pointer-events-none absolute left-0 top-0 h-full w-20"
-                                    direction="left"
-                                    blurIntensity={1}
-                                />
-                                <ProgressiveBlur
-                                    className="pointer-events-none absolute right-0 top-0 h-full w-20"
-                                    direction="right"
-                                    blurIntensity={1}
-                                />
-                            </div>
+                                <div className="flex items-center justify-center">
+                                    <Image
+                                        src="/ride-sharing-illustration.png"
+                                        alt="Hero"
+                                        width={600}
+                                        height={600}
+                                        className="w-[400px] h-auto md:w-[500px] lg:w-[600px] xl:w-[800px] transition-all duration-300"
+                                        priority
+                                    />
+                                </div>
+                            </AnimatedGroup>
                         </div>
                     </div>
                 </section>

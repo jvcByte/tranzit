@@ -23,7 +23,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { ChevronRight, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { useState } from "react"
 import { authClient } from "@/lib/auth/auth-client"
@@ -84,9 +84,8 @@ export function JoinTheWaitlistDialog() {
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button type="button" size="lg" className="h-12 rounded-full pl-5 pr-3 text-base">
+                <Button type="button" className="max-w-36 md:h-12 h-10 rounded-md text-md font-400 px-6">
                     Join the waitlist
-                    <ChevronRight className="ml-1" />
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
