@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Ubuntu } from "next/font/google";
 import "@/app/styles/globals.css";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { Toaster } from "sonner";
@@ -12,6 +12,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const ubuntu = Ubuntu({
+  weight: ['300', '400', '500', '700'],
+  subsets: ["latin"],
+  variable: '--font-ubuntu',
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full max-w-[100vw] overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu.variable} antialiased min-h-screen w-full overflow-x-hidden`}
       >
         <ThemeProvider attribute="class">
           {children}
