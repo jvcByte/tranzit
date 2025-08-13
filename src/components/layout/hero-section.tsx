@@ -30,15 +30,26 @@ export default function HeroSection() {
         <>
             <HeroHeader />
 
-            <main className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
-                <section>
+            <main className="relative overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
+                <div className="absolute inset-0 -z-10">
+                    <div className="relative w-full h-full dark:brightness-0 dark:invert dark:opacity-7">
+                        <Image
+                            src="/hero-section-bg.svg"
+                            alt=""
+                            fill
+                            className="scale-230 md:scale-90 md:object-contain"
+                            priority
+                        />
+                    </div>
+                </div>
+                <section className="relative">
                     <div className="relative mx-auto max-w-9xl px-6 pb-20 pt-32 lg:pt-48">
                         <div className="relative z-10 mx-auto max-w-7xl text-center">
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="text-balance font-black text-5xl md:text-9xl">
+                                className="text-balance font-black text-5xl md:text-8xl">
                                 Your Ride, Your Way!
                             </TextEffect>
                             <TextEffect
