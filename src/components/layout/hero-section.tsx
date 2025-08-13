@@ -59,7 +59,7 @@ export default function HeroSection() {
                                 delay={0.5}
                                 as="p"
                                 className="mx-auto mt-6 max-w-5xl font-medium md:text-2xl text-pretty text-lg">
-                                Experience safe, reliable, and affordable rides with Tranzit, the new way to move around your city. Join our waiting list and be the first to ride when we launch
+                                Experience safe, reliable, and affordable rides with Tranzit, the new way to move around your city. Join our wait-list and be the first to ride when we launch.
                             </TextEffect>
                             <AnimatedGroup
                                 variants={{
