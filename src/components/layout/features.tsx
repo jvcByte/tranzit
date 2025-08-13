@@ -5,7 +5,7 @@ import * as React from 'react'
 export default function IntegrationsSection() {
     return (
         <section>
-            <div className="py-32">
+            <div className="py-8 md:py-12">
                 <div className="mx-auto max-w-[1660px] px-6">
                     <div className="text-start">
                         <h2 className="text-balance text-3xl font-extrabold md:text-6xl">How it works</h2>
