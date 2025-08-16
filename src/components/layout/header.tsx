@@ -5,6 +5,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
 import { ModeToggle } from '../common/mode-toggle'
+import { Button } from '../ui/button'
 
 const menuItems = [
     { name: 'How it works', href: '/how-it-works' },
@@ -69,7 +70,24 @@ export const HeroHeader = () => {
                                     ))}
                                 </ul>
                             </div>
-                            <div className='hidden lg:block'>
+                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    size="sm">
+                                    <Link href="/login">
+                                        <span>Login</span>
+                                    </Link>
+                                </Button>
+                                <Button
+                                    asChild
+                                    size="sm">
+                                    <Link href="/signup">
+                                        <span>Sign Up</span>
+                                    </Link>
+                                </Button>
+                            </div>
+                            <div className='hidden lg:inline-flex'>
                                 <ModeToggle />
                             </div>
                         </div>
