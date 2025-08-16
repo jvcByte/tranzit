@@ -4,19 +4,21 @@ import FooterSection from "@/components/layout/footer-section";
 import BecomePartner from "@/components/layout/become-partner";
 import BecomeAffiliate from "@/components/layout/become-affiliate";
 import JoinWaitlist from "@/components/forms/join-waitlist";
+import { HeroHeader } from "@/components/layout/header";
 
 export default function Home() {
   return (
     <>
-    <HeroSection />
+      <HeroHeader />
+      <HeroSection />
       <Features />
-      
+
       <BecomePartner />
       <BecomeAffiliate />
 
-      <JoinWaitlist />  
+      <JoinWaitlist />
 
-    <FooterSection />
+      <FooterSection />
     </>
   );
 }

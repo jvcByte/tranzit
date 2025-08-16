@@ -92,10 +92,9 @@ export function JoinTheWaitlistDialog() {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                         <DialogHeader>
-                            <DialogTitle>Join the waitlist</DialogTitle>
-                            <DialogDescription>
-                                Be the first to know when we launch. Join our waitlist now.
-                            </DialogDescription>
+                            <DialogTitle className="text-center">Join the waitlist</DialogTitle>
+                            <DialogDescription className="text-center">
+                                We&apos;re almost ready to launch — and you can be first in line.                            </DialogDescription>
                         </DialogHeader>
 
                         <div className="space-y-4">

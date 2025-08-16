@@ -1,9 +1,8 @@
 import React from 'react'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
-import { HeroHeader } from "@/components/layout/header"
 import Image from 'next/image'
-import { JoinTheWaitlistDialog } from '../common/join-the-wait-list-dialog'
+import { JoinTheWaitlistDialog } from '../forms/join-the-wait-list-dialog'
 
 const transitionVariants = {
     item: {
@@ -28,8 +27,6 @@ const transitionVariants = {
 export default function HeroSection() {
     return (
         <>
-            <HeroHeader />
-
             <main className="relative overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
                 <div className="absolute inset-0 -z-10">
                     <div className="relative w-full h-full dark:brightness-0 dark:invert dark:opacity-7">

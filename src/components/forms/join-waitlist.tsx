@@ -67,8 +67,8 @@ export default function JoinWaitlist() {
         }
     }
     return (
-        <section className="relative py-16">
-            <div className="bg-[#e0f4c3]/75 relative mx-auto max-w-7xl overflow-hidden rounded-3xl border px-6 py-12 md:py-20 lg:py-32">
+        <section className="relative py-16 mx-4">
+            <div className="bg-[#e0f4c3]/75 relative mx-auto md:max-w-7xl max-w-10px overflow-hidden rounded-3xl border px-6 py-12 md:py-20 lg:py-32">
                 <div className="absolute inset-0 -z-10 bg-black/5">
                     <div className="relative h-full w-full">
                         <Image
@@ -82,8 +82,8 @@ export default function JoinWaitlist() {
                     </div>
                 </div>
                 <div className="text-center">
-                    <h2 className="text-balance text-[#181517] text-4xl font-bold lg:text-7xl">Be the first to ride with Tranzit</h2>
-                    <p className="mt-6 text-2xl text-[#181517] leading-[1.6] mx-auto max-w-4xl font-base ">We&apos;re almost ready to launch. Join the waitlist and get exclusive early access when we go live in your city</p>
+                    <h2 className="text-balance text-[#181517] text-2xl font-bold lg:text-5xl">We&apos;re almost ready to launch and you can be first in line.</h2>
+                    <p className="mt-6 text-lg md:text-2xl text-[#181517] leading-[1.6] max-w-4xl font-base ">Join the waitlist and be the first to know when Tranzit Mobility goes live in your city. Early access means priority booking, exclusive offers, and insider updates.</p>
 
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-4xl mx-auto">

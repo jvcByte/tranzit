@@ -7,10 +7,10 @@ import { useScroll } from 'motion/react'
 import { ModeToggle } from '../common/mode-toggle'
 
 const menuItems = [
-    { name: 'How it works', href: '#link' },
-    { name: 'Choose us', href: '#link' },
-    { name: 'For partners', href: '#link' },
-    { name: 'For affiliates', href: '#link' },
+    { name: 'How it works', href: '/how-it-works' },
+    { name: 'Choose us', href: '/choose-us' },
+    { name: 'For partners', href: '/for-partners' },
+    { name: 'For affiliates', href: '/for-affiliates' },
 ]
 
 export const HeroHeader = () => {
