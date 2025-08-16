@@ -1,6 +1,6 @@
 import { Section } from '@/components/ui/section'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import { JoinTheWaitlistDialog } from '@/components/forms/join-the-wait-list-dialog'
 
 export default function HowItWorks() {
   return (
@@ -55,7 +55,7 @@ export default function HowItWorks() {
                 </p>
                 <div className="mt-6">
                   <Button asChild>
-                    <Link href="/join-waitlist">Join the Waitlist</Link>
+                    <JoinTheWaitlistDialog />
                   </Button>
                 </div>
               </div>

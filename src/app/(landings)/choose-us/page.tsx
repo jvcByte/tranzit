@@ -1,7 +1,7 @@
 import { Section } from '@/components/ui/section'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 import { CheckCircle2 } from 'lucide-react'
+import { JoinTheWaitlistDialog } from '@/components/forms/join-the-wait-list-dialog'
 
 export default function ChooseUs() {
   const features = [
@@ -61,7 +61,7 @@ export default function ChooseUs() {
           <div className="mt-16 text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to experience the difference?</h2>
             <Button size="lg" asChild>
-              <Link href="/join-waitlist">Join the Waitlist</Link>
+              <JoinTheWaitlistDialog />
             </Button>
           </div>
         </div>
