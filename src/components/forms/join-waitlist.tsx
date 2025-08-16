@@ -17,6 +17,7 @@ import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { authClient } from '@/lib/auth/auth-client'
 import { Input } from '../ui/input'
+import {useSearchParams} from 'next/navigation'
 
 const formSchema = z.object({
     name: z.string().min(3, {
@@ -28,6 +29,7 @@ const formSchema = z.object({
 })
 
 export default function JoinWaitlist() {
+    const searchParams = useSearchParams()
     const [isLoading, setIsLoading] = useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -43,7 +45,8 @@ export default function JoinWaitlist() {
 
             const response = await authClient.waitlist.joinWaitlist({
                 name: values.name,
-                email: values.email
+                email: values.email,
+                userType: searchParams.get('type') || 'driver'
             });
             if (response.data) {
                 toast.success('🎉 You have been added to the waitlist! 🎉', {

@@ -48,11 +48,13 @@ create table "waitlist" (
     "id" text not null primary key, 
     "name" text not null, 
     "email" text not null unique, 
+    "userType" text default 'driver',
+    "status" text not null default 'pending',
     "createdAt" timestamp not null, 
     "updatedAt" timestamp not null
     );
 
-create table "partner" (
+create table "partners" (
     "id" text not null primary key,
     "userId" text not null unique references "user" ("id") on delete cascade,
     "referralCode" text not null unique,
@@ -65,7 +67,7 @@ create table "partner" (
 
 create table "referrals" (
     "id" text not null primary key,
-    "partnerId" text not null references "partner" ("id") on delete cascade,
+    "partnerId" text not null references "partners" ("id") on delete cascade,
     "referredUserId" text references "user" ("id") on delete cascade,
     "referralCode" text not null,
     "commission" real,

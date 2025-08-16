@@ -1,6 +1,7 @@
 // plugins/partners.ts
 import { createAuthEndpoint, sessionMiddleware } from "better-auth/api";
 import type { BetterAuthPlugin } from "better-auth";
+import z from "zod/v3";
 
 function generateReferralCode(): string {
     return Math.random().toString(36).substring(2, 12).toUpperCase();
@@ -231,21 +232,30 @@ export const partnersPlugin = () => {
 
             // Track referral (called when someone signs up with referral code)
             trackReferral: createAuthEndpoint("/partners/track-referral", {
-                method: "POST"
+                method: "POST",
+                body: z.object({
+                    referralCode: z.string({
+                        required_error: "Referral code is required"
+                    }),
+                    referredUserId: z.string({
+                        required_error: "Referred user ID is required"
+                    }),
+                    commission: z.string({
+                        required_error: "Commission is required"
+                    })
+                })
             }, async (ctx) => {
-                const body = await ctx.body() as {
-                    referralCode: string;
-                    referredUserId: string;
-                    commission?: number;
-                };
+                const {
+                    referralCode,
+                    referredUserId,
+                    commission
+                } = ctx.body;
 
-                if (!body?.referralCode || !body?.referredUserId) {
+                if (!referralCode || !referredUserId) {
                     return ctx.json({
                         error: "Referral code and referred user ID are required"
                     }, { status: 400 });
                 }
-
-                const { referralCode, referredUserId, commission } = body;
 
                 try {
                     // Find partner by referral code
@@ -266,7 +276,7 @@ export const partnersPlugin = () => {
                         }, { status: 404 });
                     }
 
-                    const commissionAmount = commission || 10.00;
+                    const commissionAmount = parseFloat(commission) || 10.00;
 
                     // Create referral record
                     const referral = await ctx.context.adapter.create({
@@ -310,17 +320,14 @@ export const partnersPlugin = () => {
 
             // Validate referral code (for signup forms)
             validateReferralCode: createAuthEndpoint("/partners/validate-code", {
-                method: "POST"
+                method: "POST",
+                body: z.object({
+                    referralCode: z.string({
+                        required_error: "Referral code is required"
+                    })
+                })
             }, async (ctx) => {
-                const body = await ctx.body() as { referralCode: string };
-
-                if (!body?.referralCode) {
-                    return ctx.json({
-                        error: "Referral code is required"
-                    }, { status: 400 });
-                }
-
-                const { referralCode } = body;
+                const { referralCode } = ctx.body;
 
                 try {
                     const partner = await ctx.context.adapter.findOne({

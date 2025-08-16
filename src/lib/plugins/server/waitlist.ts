@@ -18,6 +18,10 @@ export const waitlistPlugin = () => {
                         required: true,
                         unique: true
                     },
+                    userType: {
+                        type: "string", // driver, partner, affiliate
+                        required: false
+                    },
                     status: {
                         type: "string" // pending, approved, rejected
                     },
@@ -37,9 +41,10 @@ export const waitlistPlugin = () => {
                     email: z.string().email({
                         message: "Please enter a valid email address.",
                     }),
+                    userType: z.string().optional()
                 })
             }, async (ctx) => {
-                const body = ctx.body as { name: string; email: string };
+                const body = ctx.body as { name: string; email: string; userType?: string };
 
                 if (!body?.name || !body?.email) {
                     return ctx.json({
@@ -47,7 +52,7 @@ export const waitlistPlugin = () => {
                     }, { status: 400 });
                 }
 
-                const { name, email } = body;
+                const { name, email, userType } = body;
 
                 try {
                     // Check if email already exists
@@ -74,6 +79,7 @@ export const waitlistPlugin = () => {
                         data: {
                             name,
                             email,
+                            userType: userType || "driver",
                             status: "pending",
                             createdAt: new Date()
                         }

@@ -1,0 +1,1 @@
+alter table "waitlist" add column "userType" text;
