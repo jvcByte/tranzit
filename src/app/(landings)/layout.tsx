@@ -1,7 +1,7 @@
 'use client'
 
-import { HeroHeader } from '@/components/layout/header'
-import FooterSection from '@/components/layout/footer-section'
+import { HeroHeader } from '@/components/common/header'
+import FooterSection from '@/components/common/footer-section'
 import { PageTransition } from '@/components/ui/page-transition'
 
 export default function MainLayout({

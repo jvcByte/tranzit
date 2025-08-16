@@ -4,8 +4,8 @@ import { Menu, X } from 'lucide-react'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
-import { ModeToggle } from '../common/mode-toggle'
-import { Button } from '../ui/button'
+import { ModeToggle } from './mode-toggle'
+// import { Button } from '../ui/button'
 
 const menuItems = [
     { name: 'How it works', href: '/how-it-works' },
@@ -31,7 +31,7 @@ export const HeroHeader = () => {
         <header>
             <nav
                 data-state={menuState && 'active'}
-                className={cn('fixed z-20 w-full border-b transition-colors duration-150 bg-background', scrolled )}>
+                className={cn('fixed z-20 w-full border-b transition-colors duration-150 bg-background', scrolled)}>
                 <div className="m-auto max-w-[1660px] px-6">
                     <div className="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full justify-between lg:w-auto">
@@ -70,7 +70,7 @@ export const HeroHeader = () => {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                            {/* <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
                                     asChild
                                     variant="outline"
@@ -86,7 +86,7 @@ export const HeroHeader = () => {
                                         <span>Sign Up</span>
                                     </Link>
                                 </Button>
-                            </div>
+                            </div> */}
                             <div className='hidden lg:inline-flex'>
                                 <ModeToggle />
                             </div>
