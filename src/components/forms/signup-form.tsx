@@ -27,7 +27,7 @@ const formSchema = z.object({
     username: z.string().min(3),
 })
 
-export default function SignupPage() {
+export default function SignUpPage() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
@@ -48,7 +48,7 @@ export default function SignupPage() {
         try {
             await authClient.signIn.social({
                 provider: "google",
-                callbackURL: "/dashboard",
+                callbackURL: "/welcome",
             });
             toast.success('Redirecting to Google...', {
                 className: "toast-success",
@@ -80,7 +80,8 @@ export default function SignupPage() {
                 className: "toast-success",
                 duration: 4000,
             })
-            router.push("/dashboard")
+            // Redirect to welcome page to select role
+            router.push("/welcome")
         } else {
             toast.error(error?.message || "Failed to create account. Try Again", {
                 className: "toast-error",

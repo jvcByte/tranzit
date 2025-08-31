@@ -1,5 +1,5 @@
 import React from "react";
-import Signin from "@/components/forms/signup-form";
+import SignUp from "@/components/forms/signup-form";
 import { HeroHeader } from "@/components/common/header";
 import FooterSection from "@/components/common/footer-section";
 
@@ -11,7 +11,7 @@ export default function SignupPage() {
             </header>
 
             <main className="flex-1">
-                <Signin />
+                <SignUp />
             </main>
 
             <footer className="shrink-0">

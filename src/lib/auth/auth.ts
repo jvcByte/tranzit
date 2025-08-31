@@ -4,6 +4,7 @@ import { nextCookies } from "better-auth/next-js";
 import { Pool } from "pg";
 import { partnersPlugin } from "@/lib/plugins/server/partners";
 import { waitlistPlugin } from "@/lib/plugins/server/waitlist"; 
+import { rolePlugin } from "@/lib/plugins/server/role";
 export const auth = betterAuth({
   trustedOrigins: [
     'http://localhost:3000',
@@ -38,5 +39,6 @@ export const auth = betterAuth({
   plugins: [
     partnersPlugin(),
     waitlistPlugin(),
+    rolePlugin(),
     nextCookies()]
 })
