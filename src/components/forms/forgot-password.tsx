@@ -1,3 +1,5 @@
+'use client'
+
 // import { LogoIcon } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -38,7 +40,13 @@ export default function ForgotPasswordPage() {
                             />
                         </div>
 
-                        <Button className="w-full">Send Reset Link</Button>
+                        <Button
+                            type="submit"
+                            className="w-full"
+                            onClick={() => alert('Not implemented yet')}
+                        >
+                            Send Reset Link
+                        </Button>
                     </div>
 
                     <div className="mt-6 text-center">

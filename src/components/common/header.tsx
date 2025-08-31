@@ -5,6 +5,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
 import { ModeToggle } from './mode-toggle'
+import { Button } from '../ui/button'
 // import { Button } from '../ui/button'
 
 const menuItems = [
@@ -70,7 +71,7 @@ export const HeroHeader = () => {
                                     ))}
                                 </ul>
                             </div>
-                            {/* <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
                                     asChild
                                     variant="outline"
@@ -86,7 +87,7 @@ export const HeroHeader = () => {
                                         <span>Sign Up</span>
                                     </Link>
                                 </Button>
-                            </div> */}
+                            </div>
                             <div className='hidden lg:inline-flex'>
                                 <ModeToggle />
                             </div>
