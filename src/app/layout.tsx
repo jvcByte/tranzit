@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Ubuntu } from "next/font/google";
+import { Geist, Geist_Mono/*, Ubuntu */} from "next/font/google";
 import "@/app/styles/globals.css";
 import { ThemeProvider } from "@/context/theme-provider";
 import { Toaster } from "sonner";
@@ -14,11 +14,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const ubuntu = Ubuntu({
-  weight: ['300', '400', '500', '700'],
-  subsets: ["latin"],
-  variable: '--font-ubuntu',
-});
+// @dev Failed to fetch `Ubuntu` from Google Fonts due to poor network connectivity
+// @dev can uncomment this line if you have a stable network connection and pass it to the className of the body tag
+// const ubuntu = Ubuntu({
+//   weight: ['300', '400', '500', '700'],
+//   subsets: ["latin"],
+//   variable: '--font-ubuntu',
+// });
 
 export const metadata: Metadata = {
   title: "Tranzit Mobility",
@@ -33,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ubuntu.variable} antialiased min-h-screen w-full overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full overflow-x-hidden`}
       >
         <ThemeProvider attribute="class">
           {children}
