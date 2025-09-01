@@ -74,7 +74,7 @@ export default async function DashboardPage() {
 const topNav = [
   {
     title: 'Overview',
-    href: 'admin/overview',
+    href: '/admin-dashboard',
     isActive: true,
     disabled: false,
   },
