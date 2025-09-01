@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
-import { ModeToggle } from './mode-toggle'
+import { ThemeSwitch } from '@/components/theme-switch'
 import { Button } from '../ui/button'
 // import { Button } from '../ui/button'
 
@@ -52,7 +52,7 @@ export const HeroHeader = () => {
                                     <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
                                 </button>
                                 <div className='lg:hidden'>
-                                    <ModeToggle />
+                                    <ThemeSwitch />
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ export const HeroHeader = () => {
                                 </Button>
                             </div>
                             <div className='hidden lg:inline-flex'>
-                                <ModeToggle />
+                                <ThemeSwitch />
                             </div>
                         </div>
                     </div>

@@ -166,9 +166,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return null;
   }
 
-  if (!user) {
-    console.error("User not found");
-  }
+  // if (!user) {
+  //   console.error("User not found");
+  // }
 
 
   return (
