@@ -80,19 +80,19 @@ const topNav = [
   },
   {
     title: 'Customers',
-    href: 'admin-dashboard/customers',
+    href: 'admin/customers',
     isActive: false,
     disabled: true,
   },
   {
     title: 'Products',
-    href: 'admin-dashboard/products',
+    href: 'admin/products',
     isActive: false,
     disabled: true,
   },
   {
     title: 'Settings',
-    href: 'admin-dashboard/settings',
+    href: 'admin/settings',
     isActive: false,
     disabled: true,
   },
