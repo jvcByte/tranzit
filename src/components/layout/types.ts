@@ -6,12 +6,6 @@ type User = {
     avatar: string
 }
 
-type Team = {
-    name: string
-    logo: React.ElementType
-    plan: string
-}
-
 type BaseNavItem = {
     title: string
     badge?: string
@@ -25,7 +19,7 @@ type NavLink = BaseNavItem & {
 
 type NavCollapsible = BaseNavItem & {
     items: (BaseNavItem & { url: LinkProps['href'] })[]
-    url?: never
+    url?: undefined
 }
 
 type NavItem = NavCollapsible | NavLink
@@ -37,7 +31,6 @@ type NavGroup = {
 
 type SidebarData = {
     user: User
-    teams: Team[]
     navGroups: NavGroup[]
 }
 

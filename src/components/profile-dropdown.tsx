@@ -1,0 +1,94 @@
+"use client"
+
+import Link from 'next/link'
+import useDialogState from '@/hooks/use-dialog-state'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { SignOutDialog } from '@/components/sign-out-dialog'
+
+function getUserInitials(name: string) {
+  return name
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2)
+}
+
+interface NavUserProps {
+  user: {
+    name: string
+    email: string
+    avatar: string
+  }
+}
+
+export function ProfileDropdown({ user }: NavUserProps) {
+  const [open, setOpen] = useDialogState()
+
+  return (
+    <>
+      <DropdownMenu modal={false}>
+        <DropdownMenuTrigger asChild>
+          <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
+            <Avatar className='h-8 w-8'>
+              <AvatarImage src={user?.avatar} alt='User Avatar' />
+              <AvatarFallback>
+                {getUserInitials(user?.name)}
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className='w-56' align='end' forceMount>
+          <DropdownMenuLabel className='font-normal'>
+            <div className='flex flex-col gap-1.5'>
+              <p className='text-sm leading-none font-medium'>{user.name}</p>
+              <p className='text-muted-foreground text-xs leading-none'>
+                {user.email}
+              </p>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <Link href='/profile'>
+                Profile
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href='/billing'>
+                Billing
+                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href='/settings'>
+                Settings
+                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>New Team</DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => setOpen(true)}>
+            Sign out
+            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <SignOutDialog open={!!open} onOpenChange={setOpen} />
+    </>
+  )
+}
