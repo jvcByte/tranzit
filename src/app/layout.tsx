@@ -1,26 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono/*, Ubuntu */} from "next/font/google";
-import "@/app/styles/globals.css";
-import { ThemeProvider } from "@/context/theme-provider";
-import { Toaster } from "sonner";
+import { ThemeProvider } from "@/context/theme-provider"
+import { Toaster } from "sonner"
+import "@/app/styles/globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// Using system fonts to avoid network dependency on Google Fonts
+// Can be replaced with local font files if needed
+const fontSans = {
+  variable: '--font-sans',
+  style: 'normal',
+  weight: '400',
+  src: 'local("system-ui"), local("-apple-system"), local("Segoe UI"), local(Roboto), local(Helvetica), local(Arial), local(sans-serif)',
+  display: 'swap',
+};
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// @dev Failed to fetch `Ubuntu` from Google Fonts due to poor network connectivity
-// @dev can uncomment this line if you have a stable network connection and pass it to the className of the body tag
-// const ubuntu = Ubuntu({
-//   weight: ['300', '400', '500', '700'],
-//   subsets: ["latin"],
-//   variable: '--font-ubuntu',
-// });
+const fontMono = {
+  variable: '--font-mono',
+  style: 'normal',
+  weight: '400',
+  src: 'local("Menlo"), local("Monaco"), local("Consolas"), local("Liberation Mono"), local("Courier New"), monospace',
+  display: 'swap',
+};
 
 export const metadata: Metadata = {
   title: "Tranzit Mobility",
@@ -35,7 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full overflow-x-hidden`}
+        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased min-h-screen w-full overflow-x-hidden`}
+        style={{
+          '--font-sans': fontSans.src,
+          '--font-mono': fontMono.src,
+        } as React.CSSProperties}
       >
         <ThemeProvider attribute="class">
           {children}
