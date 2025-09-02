@@ -24,7 +24,6 @@ import { Overview } from '../components/overview'
 import { RecentSales } from '../components/recent-sales'
 import { Main } from "@/components/layout/main";
 import { Header } from "@/components/layout/header";
-import { authClient } from "@/lib/auth/auth-client";
 
 // Extend the session user type to include role
 type UserRole = 'driver' | 'affiliate' | 'partner';
@@ -53,88 +52,6 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
     }
 
     console.log('Session found for user:', session.user.id);
-
-    let userRole: UserRole | null = null;
-
-    try {
-        console.log('Fetching role for user:', session.user.id);
-        const roleResult = await authClient.role.getRole({
-            query: {
-                userId: session.user.id
-            },
-            fetchOptions: {
-                headers: {
-                    cookie: (await headers()).get('cookie') || ''
-                }
-            }
-        }).catch(error => {
-            console.error('Error in role API call:', error);
-            if (error.status === 401) {
-                console.log('Session might be expired, attempting to refresh...');
-                throw new Error('Session expired');
-            }
-            throw error;
-        });
-
-        console.log('Role API result:', JSON.stringify(roleResult, null, 2));
-
-        if (roleResult?.data && 'role' in roleResult.data) {
-            userRole = roleResult.data.role as UserRole;
-            console.log('Found user role:', userRole);
-        } else {
-            console.log('No role found in response');
-        }
-    } catch (error) {
-        console.error('Error fetching role from server-side:', error);
-        if (error instanceof Error && error.message === 'Session expired') {
-            console.log('Redirecting to login due to expired session');
-            redirect('/login?error=SessionExpired');
-        }
-        console.error('Unexpected error during role verification');
-        return (
-            <div className="container mx-auto p-6">
-                <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 p-4 rounded">
-                    <h2 className="font-bold">Error Loading Dashboard</h2>
-                    <p>We couldn&apos;t verify your role. Please try refreshing the page or contact support if the problem persists.</p>
-                    <button
-                        onClick={() => window.location.reload()}
-                        className="mt-2 px-4 py-2 bg-yellow-100 hover:bg-yellow-200 rounded text-yellow-800"
-                    >
-                        Refresh Page
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
-    // If user has no role, show a message instead of redirecting to prevent loops
-    // if (!userRole) {
-    //     console.log('User has no role assigned');
-    //     return (
-    //         <div className="container mx-auto p-6">
-    //             <div className="border dark:border-primary/20 p-4 rounded">
-    //                 <h2 className="font-bold">Role Not Assigned</h2>
-    //                 <p>You need to complete your profile setup before accessing the dashboard.</p>
-    //                 <div className="mt-4">
-    //                     <a
-    //                         href="/welcome"
-    //                         className="px-4 py-2 rounded border hover:border-primary dark:border-primary/30"
-    //                     >
-    //                         Complete Profile
-    //                     </a>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // }
-
-    // If user's role doesn't match the route, redirect to their correct dashboard
-    if (userRole !== expectedRole) {
-        console.log(`Role mismatch: user has ${userRole}, URL expects ${expectedRole}`);
-        redirect(`/dashboard/${userRole}`);
-    }
-
-    console.log('✅ Role validation passed, rendering dashboard');
 
     // Role-specific content
     const roleContent = {
