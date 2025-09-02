@@ -70,7 +70,8 @@ export default function HeroSection() {
                                     },
                                     ...transitionVariants,
                                 }}
-                                className="mt-6 md:mt-12">
+                                className="mt-6 md:mt-12"
+                            >
                                 <div className="flex flex-col gap-2 items-center justify-center">
 
                                     <div className="absolute left-1/2 -translate-x-1/2 -top-8 md:-top-10 w-auto h-auto animate-shake ml-28 ">
