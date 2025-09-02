@@ -32,17 +32,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased min-h-screen w-full overflow-x-hidden`}
         style={{
           '--font-sans': fontSans.src,
           '--font-mono': fontMono.src,
         } as React.CSSProperties}
+        suppressHydrationWarning
       >
-        <ThemeProvider attribute="class">
+        <ThemeProvider 
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-          <Toaster />
+          <Toaster position="top-center" swipeDirections={['top', 'bottom', 'left', 'right']} />
         </ThemeProvider>
       </body>
     </html>

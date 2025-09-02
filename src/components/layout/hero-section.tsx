@@ -2,7 +2,11 @@ import React from 'react'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
 import Image from 'next/image'
-import { JoinTheWaitlistDialog } from '../forms/join-the-wait-list-dialog'
+import { Button } from '../ui/button'
+import Link from 'next/link'
+import { Input } from '../ui/input'
+import { Dot, LocateFixed, TentTree } from 'lucide-react'
+import { IconSquareFilled } from '@tabler/icons-react'
 
 const transitionVariants = {
     item: {
@@ -40,14 +44,14 @@ export default function HeroSection() {
                     </div>
                 </div>
                 <section className="relative">
-                    <div className="relative mx-auto max-w-9xl px-6 pb-20 pt-32 lg:pt-48">
-                        <div className="relative z-10 mx-auto max-w-7xl text-center">
+                    <div className="flex flex-col gap-48 md:flex-row items-center justify-center relative mx-auto max-w-7xl px-6 pb-20 pt-32 lg:pt-48">
+                        <div className="relative z-10 mx-auto max-w-7xl">
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className="text-balance font-black text-5xl md:text-8xl">
-                                Your Ride, Your Way!
+                                className=" md:leading-[4rem] font-[800] text-4xl md:text-[52px]">
+                                Request a ride for now or later
                             </TextEffect>
                             <TextEffect
                                 per="line"
@@ -55,8 +59,8 @@ export default function HeroSection() {
                                 speedSegment={0.3}
                                 delay={0.5}
                                 as="p"
-                                className="mx-auto mt-6 max-w-5xl font-medium md:text-2xl text-pretty text-lg">
-                                Experience safe, reliable, and affordable rides with Tranzit, the new way to move around your city. Join our wait-list and be the first to ride when we launch.
+                                className="mx-auto mt-4 max-w-5xl font-medium md:text-2xl text-pretty text-md">
+                                Add your trip details, hop in, and go.
                             </TextEffect>
                             <AnimatedGroup
                                 variants={{
@@ -72,40 +76,86 @@ export default function HeroSection() {
                                 }}
                                 className="mt-6 md:mt-12"
                             >
-                                <div className="flex flex-col gap-2 items-center justify-center">
+                                <div className="flex flex-col gap-4 relative">
+                                    {/* Connecting line */}
+                                    <div className="absolute left-6 top-8.5 h-12 w-0.25 bg-gray-400 z-10"></div>
 
-                                    <div className="absolute left-1/2 -translate-x-1/2 -top-8 md:-top-10 w-auto h-auto animate-shake ml-28 ">
-                                        <Image
-                                            src="/join-waitlist-arrow.svg"
-                                            alt="Join Waitlist Arrow"
-                                            width={24}
-                                            height={24}
-                                            className="w-14 h-16 md:w-16 md:h-16 scale-x-100"
-                                            priority
+                                    {/* Destination input */}
+                                    <div className="relative flex items-center">
+                                        <div className="absolute left-0 z-10">
+                                            <Dot className="h-12 w-12 text-gray-400" strokeWidth={3} />
+                                        </div>
+                                        <Input
+                                            className="py-6 pl-12 pr-4 bg-[#f3f3f3] relative z-0"
+                                            placeholder="Enter your destination"
                                         />
+                                        <div className="absolute right-5 z-10">
+                                            <Link href="#destination" >
+                                                <TentTree className="h-6 w-6" strokeWidth={1} />
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col gap-2 items-center md:gap-4">
-                                        <JoinTheWaitlistDialog />
-                                        <Image
-                                            src="/trust-bar.svg"
-                                            alt="Trust By"
-                                            width={344}
-                                            height={75}
-                                            className="w-[244px] h-[45px] lg:w-[344px] lg:h-[75px] transition-all duration-300"
-                                            priority
+
+                                    {/* Pickup input */}
+                                    <div className="relative flex items-center">
+                                        <div className="absolute left-4 z-10">
+                                            <IconSquareFilled className="h-3 w-4.5 text-gray-400" strokeWidth={3} />
+                                        </div>
+                                        <Input
+                                            className="py-6 pl-12 pr-4 bg-[#f3f3f3] relative z-0"
+                                            placeholder="Enter your pickup location"
                                         />
+                                        <div className="absolute right-5 z-10">
+                                            <Link href="#location" >
+                                                <LocateFixed className="h-6 w-6" strokeWidth={1} />
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="flex items-center justify-center">
-                                    <Image
-                                        src="/ride-sharing-illustration.png"
-                                        alt="Hero"
-                                        width={600}
-                                        height={600}
-                                        className="w-[400px] h-auto md:w-[500px] lg:w-[600px] xl:w-[800px] transition-all duration-300"
-                                        priority
-                                    />
+                                <div className="flex mt-6 flex-col items-start justify-start gap-2 sm:flex-row">
+                                    <Button
+                                        asChild
+                                        size="lg"
+                                        className="px-8 py-5.5">
+                                        <Link href="#link">
+                                            <span className="text-nowrap text-[1.2rem]">See Prices</span>
+                                        </Link>
+                                    </Button>
+                                    <Button
+                                        key={2}
+                                        asChild
+                                        size="lg"
+                                        variant="secondary"
+                                        className="px-8 py-5.5 hidden md:inline-flex">
+                                        <Link href="#link">
+                                            <span className="text-nowrap text-[1.2rem]">Schedule for later</span>
+                                        </Link>
+                                    </Button>
                                 </div>
+                            </AnimatedGroup>
+                        </div>
+                        <div className="flex hidden md:block items-center justify-center">
+                            <AnimatedGroup
+                                variants={{
+                                    container: {
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.05,
+                                                delayChildren: 0.75,
+                                            },
+                                        },
+                                    },
+                                    ...transitionVariants,
+                                }}
+                            >
+                                <Image
+                                    src="/hero-section-image.png"
+                                    alt="Hero"
+                                    width={600}
+                                    height={600}
+                                    className="rounded-md w-[600px] h-auto md:w-[700px] lg:w-[800px] xl:w-[900px] transition-all duration-300"
+                                    priority
+                                />
                             </AnimatedGroup>
                         </div>
                     </div>
