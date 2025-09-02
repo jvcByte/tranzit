@@ -13,7 +13,15 @@ import { sidebarData } from './data/sidebar-data'
 import { NavGroup } from '@/components/layout/nav-group'
 import { NavUser } from '@/components/layout/nav-user'
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
+}
+
+export function AppSidebar({ user }: AppSidebarProps) {
   const { collapsible, variant } = useLayout()
   return (
     <Sidebar collapsible={collapsible} variant={variant}>
@@ -26,7 +34,7 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={sidebarData.user} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

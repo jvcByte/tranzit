@@ -78,7 +78,11 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
                         "--header-height": "calc(var(--spacing) * 12)",
                     } as React.CSSProperties}
                 >
-                    <AppSidebar />
+                    <AppSidebar user={{
+                        name: session.user.name,
+                        email: session.user.email,
+                        avatar: session.user.image || ""
+                    }} />
                     <SidebarInset>
                         {/* ===== Top Heading ===== */}
                         <Header>
