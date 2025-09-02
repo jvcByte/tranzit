@@ -17,24 +17,21 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
     console.log('=== DASHBOARD PAGE LOADED ===');
     console.log('Expected role from URL:', expectedRole);
 
-    // Check authentication first
-        const session = await auth.api.getSession({
-            headers: await headers()
-        });
-    
-        // If no session, redirect to login
-        if (!session?.user) {
-            console.log('No session found, redirecting to login');
-            redirect('/login');
-        }
-    
-        console.log('Session found for user:', session.user.id);
-    
-        // Get user role directly from the database using server-side method
-        let userRole: UserRole | null = null;
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
+
+    if (!session?.user) {
+        console.log('No session found, redirecting to login');
+        redirect('/login');
+    }
+
+    console.log('Session found for user:', session.user.id);
+
+    let userRole: UserRole | null = null;
+
     try {
         console.log('Fetching role for user:', session.user.id);
-        // Use the auth.api method for server-side calls
         const roleResult = await authClient.role.getRole({
             query: {
                 userId: session.user.id
@@ -46,7 +43,6 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
             }
         }).catch(error => {
             console.error('Error in role API call:', error);
-            // If there's a 401, try to refresh the session
             if (error.status === 401) {
                 console.log('Session might be expired, attempting to refresh...');
                 throw new Error('Session expired');
@@ -64,15 +60,11 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
         }
     } catch (error) {
         console.error('Error fetching role from server-side:', error);
-        // If session is expired, redirect to login
         if (error instanceof Error && error.message === 'Session expired') {
             console.log('Redirecting to login due to expired session');
             redirect('/login?error=SessionExpired');
         }
-        // For other errors, show an error but don't redirect in a way that could cause loops
         console.error('Unexpected error during role verification');
-        // Instead of redirecting, we'll let the page render with the error state
-        // This prevents the redirect loop while still showing an error
         return (
             <div className="container mx-auto p-6">
                 <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 p-4 rounded">

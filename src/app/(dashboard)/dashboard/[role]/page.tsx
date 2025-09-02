@@ -24,6 +24,7 @@ import { Overview } from '../components/overview'
 import { RecentSales } from '../components/recent-sales'
 import { Main } from "@/components/layout/main";
 import { Header } from "@/components/layout/header";
+import { authClient } from "@/lib/auth/auth-client";
 
 // Extend the session user type to include role
 type UserRole = 'driver' | 'affiliate' | 'partner';
@@ -52,6 +53,45 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
     }
 
     console.log('Session found for user:', session.user.id);
+
+    let userRole: UserRole | null = null;
+
+
+    const roleResult = await authClient.role.getRole({
+        query: {
+            userId: session.user.id
+        },
+        fetchOptions: {
+            headers: {
+                cookie: (await headers()).get('cookie') || ''
+            }
+        }
+    }).catch(error => {
+        console.error('Error in role API call:', error);
+        // If there's a 401, try to refresh the session
+        if (error.status === 401) {
+            console.log('Session might be expired, attempting to refresh...');
+            throw new Error('Session expired');
+        }
+        throw error;
+    });
+
+    console.log('Role API result:', JSON.stringify(roleResult, null, 2));
+
+    if (roleResult?.data && 'role' in roleResult.data) {
+        userRole = roleResult.data.role as UserRole;
+        console.log('Found user role:', userRole);
+    } else {
+        console.log('No role found in response');
+    }
+
+    // If user's role doesn't match the route, redirect to their correct dashboard
+    if (userRole !== expectedRole) {
+        console.log(`Role mismatch: user has ${userRole}, URL expects ${expectedRole}`);
+        redirect(`/dashboard/${userRole}`);
+    }
+
+    console.log('✅ Role validation passed, rendering dashboard');
 
     // Role-specific content
     const roleContent = {
