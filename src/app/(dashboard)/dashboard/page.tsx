@@ -75,12 +75,12 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
         // This prevents the redirect loop while still showing an error
         return (
             <div className="container mx-auto p-6">
-                <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded">
+                <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 p-4 rounded">
                     <h2 className="font-bold">Error Loading Dashboard</h2>
                     <p>We couldn&apos;t verify your role. Please try refreshing the page or contact support if the problem persists.</p>
                     <button
                         onClick={() => window.location.reload()}
-                        className="mt-2 px-4 py-2 bg-red-100 hover:bg-red-200 rounded text-red-800"
+                        className="mt-2 px-4 py-2 bg-yellow-100 hover:bg-yellow-200 rounded text-yellow-800"
                     >
                         Refresh Page
                     </button>
@@ -94,13 +94,13 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
         console.log('User has no role assigned');
         return (
             <div className="container mx-auto p-6">
-                <div className="border p-4 rounded">
+                <div className="border dark:border-primary/20 p-4 rounded">
                     <h2 className="font-bold">Role Not Assigned</h2>
                     <p>You need to complete your profile setup before accessing the dashboard.</p>
                     <div className="mt-4">
                         <a
                             href="/welcome"
-                            className="px-4 py-2 rounded"
+                            className="px-4 py-2 rounded border hover:border-primary dark:border-primary/30"
                         >
                             Complete Profile
                         </a>
