@@ -8,7 +8,9 @@ import { rolePlugin } from "@/lib/plugins/server/role";
 export const auth = betterAuth({
   trustedOrigins: [
     'http://localhost:3000',
-    'http://192.168.80.202:3000',
+    // 'http://192.168.80.202:3000',
+    'https://tranzit.cc',
+    'https://www.tranzit.cc',
   ],
 
   database: new Pool({
