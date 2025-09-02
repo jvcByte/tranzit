@@ -69,25 +69,6 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
         },
     };
 
-    // return (
-    //     <div className="container mx-auto p-6">
-    //         <h1 className="text-3xl font-bold mb-4">{roleContent[expectedRole].title}</h1>
-    //         <p className="text-gray-600 mb-8">{roleContent[expectedRole].description}</p>
-
-    //         {/* Add role-specific components here */}
-    //         <div className="bg-white p-6 rounded-lg shadow">
-    //             <h2 className="text-xl font-semibold mb-4">Welcome, {session.user.name}!</h2>
-    //             <p>This is your {expectedRole} dashboard. More content coming soon!</p>
-    //             <div className="mt-4 text-sm text-gray-500">
-    //                 <p>User ID: {session.user.id}</p>
-    //                 <p>Role: {userRole}</p>
-    //                 <p>Route Role: {expectedRole}</p>
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
-
-
     return (
         <SearchProvider>
             <LayoutProvider>
