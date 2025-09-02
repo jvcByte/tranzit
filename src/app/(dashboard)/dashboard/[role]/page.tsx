@@ -86,7 +86,7 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
                     <SidebarInset>
                         {/* ===== Top Heading ===== */}
                         <Header>
-                            <TopNav className="md:font-medium" title={roleContent[expectedRole].title} />
+                            <TopNav className="md:font-medium" title={roleContent[expectedRole]?.title} />
                             <div className='ms-auto flex items-center space-x-4'>
                                 <Search />
                                 <ThemeSwitch />
@@ -102,7 +102,7 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
                         <Main>
                             <div className='mb-2 flex flex-col items-start justify-between space-y-2'>
                                 <h1 className='md:text-2xl text-medium font-bold tracking-wide'>Welcome, &nbsp; {session.user.name}!</h1>
-                                <span className="md:text-xl text-base mb-8">{roleContent[expectedRole].description}</span>
+                                <span className="md:text-xl text-base mb-8">{roleContent[expectedRole]?.description}</span>
                             </div>
                             <Tabs
                                 orientation='vertical'

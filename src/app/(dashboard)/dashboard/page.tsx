@@ -94,13 +94,13 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
         console.log('User has no role assigned');
         return (
             <div className="container mx-auto p-6">
-                <div className="bg-yellow-50 border border-yellow-200 text-yellow-700 p-4 rounded">
+                <div className="border p-4 rounded">
                     <h2 className="font-bold">Role Not Assigned</h2>
                     <p>You need to complete your profile setup before accessing the dashboard.</p>
                     <div className="mt-4">
                         <a
                             href="/welcome"
-                            className="px-4 py-2 bg-yellow-100 hover:bg-yellow-200 rounded text-yellow-800"
+                            className="px-4 py-2 rounded"
                         >
                             Complete Profile
                         </a>
