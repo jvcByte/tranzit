@@ -108,25 +108,25 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
     }
 
     // If user has no role, show a message instead of redirecting to prevent loops
-    if (!userRole) {
-        console.log('User has no role assigned');
-        return (
-            <div className="container mx-auto p-6">
-                <div className="border dark:border-primary/20 p-4 rounded">
-                    <h2 className="font-bold">Role Not Assigned</h2>
-                    <p>You need to complete your profile setup before accessing the dashboard.</p>
-                    <div className="mt-4">
-                        <a
-                            href="/welcome"
-                            className="px-4 py-2 rounded border hover:border-primary dark:border-primary/30"
-                        >
-                            Complete Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    // if (!userRole) {
+    //     console.log('User has no role assigned');
+    //     return (
+    //         <div className="container mx-auto p-6">
+    //             <div className="border dark:border-primary/20 p-4 rounded">
+    //                 <h2 className="font-bold">Role Not Assigned</h2>
+    //                 <p>You need to complete your profile setup before accessing the dashboard.</p>
+    //                 <div className="mt-4">
+    //                     <a
+    //                         href="/welcome"
+    //                         className="px-4 py-2 rounded border hover:border-primary dark:border-primary/30"
+    //                     >
+    //                         Complete Profile
+    //                     </a>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     // If user's role doesn't match the route, redirect to their correct dashboard
     if (userRole !== expectedRole) {
