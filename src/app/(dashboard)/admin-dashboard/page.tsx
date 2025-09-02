@@ -42,7 +42,13 @@ export default async function DashboardPage() {
           <AppSidebar />
           <SidebarInset>
             <SiteHeader>
-              <TopNav links={topNav} />
+              <TopNav 
+                title="Admin Dashboard"
+                links={topNav.map(link => ({
+                  ...link,
+                  isActive: link.href === '/admin-dashboard' // Adjust this logic based on your active route
+                }))} 
+              />
               <div className='ms-auto flex items-center space-x-4'>
                 <Search />
                 <ThemeSwitch />
