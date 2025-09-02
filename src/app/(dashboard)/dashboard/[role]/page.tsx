@@ -45,6 +45,11 @@ export default async function RoleDashboard({ params }: DashboardPageProps) {
         headers: await headers()
     });
 
+    if (expectedRole !== 'affiliate' && expectedRole !== 'driver' && expectedRole !== 'partner') {
+        console.log('Invalid role, redirecting to login');
+        redirect('/welcome');
+    }
+
     // If no session, redirect to login
     if (!session?.user) {
         console.log('No session found, redirecting to login');
