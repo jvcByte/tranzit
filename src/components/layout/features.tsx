@@ -127,7 +127,7 @@ const IntegrationCard = ({ title, description, children, link = 'https://github.
                             size="sm"
                             className="w-full justify-between">
                             <Link href={link}>
-                                <span>Learn more</span>
+                                <span>Details</span>
                                 <ChevronRight className="h-4 w-4" />
                             </Link>
                         </Button>
