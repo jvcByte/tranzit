@@ -1,39 +1,96 @@
+import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { CarFront, Handshake, Users } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import * as React from 'react'
 
 export default function IntegrationsSection() {
     return (
         <section>
-            <div className="py-8 md:py-12">
-                <div className="mx-auto max-w-[1660px] px-6">
+            <div className="py-12">
+                <div className="mx-auto max-w-7xl px-6">
                     <div className="text-start">
-                        <h2 className="text-balance text-3xl font-extrabold md:text-6xl">How it works</h2>
+                        <h2 className="text-balance text-3xl font-semibold md:text-4xl">Options</h2>
                     </div>
 
                     <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                         <IntegrationCard
-                            title="Ride better"
-                            description="Book solo or shared rides at competitive rates"
-                            cardClassName="border-2 rounded-md bg-[#fff9e6] [box-shadow:-11px_12px_2px_2px_#ffd873]"
-                            iconColor="bg-[#ffd873] border-[#ffd873]">
-                            <CarFront />
+                            title="Ride"
+                            description="Go anywhere, anytime with Tranzit. Request a ride, hop in, and go!"
+                            link="#ride">
+                            <Image
+                                src="/ride.png"
+                                alt="Ride"
+                                width={300}
+                                height={300}
+                                className=""
+                            />
                         </IntegrationCard>
 
                         <IntegrationCard
-                            title="Earn more"
-                            description="Partner with and grow your income"
-                            cardClassName="border-2 mt-4 md:mt-0 rounded-md bg-[#f4faec] [box-shadow:-11px_12px_2px_2px_#c3e893]"
-                            iconColor="bg-[#c3e893] border-[#c3e893]">
-                            <Handshake />
+                            title="Reserve"
+                            description="Book a car in advance and save time on the road."
+                            link="#reserve">
+                            <Image
+                                src="/reserve.png"
+                                alt="Reserve"
+                                width={300}
+                                height={300}
+                                className=""
+                            />
                         </IntegrationCard>
 
                         <IntegrationCard
-                            title="Share and earn"
-                            description="Refer partners and earn commissions as an affiliate"
-                            cardClassName="bg-[#fff9e6] mt-4 md:mt-0 [box-shadow:-11px_12px_0_0_#ffd873]"
-                            iconColor="bg-[#ffd873] border-[#ffd873]">
-                            <Users />
+                            title="Rental car"
+                            description="Rent a car from Tranzit and save money while you travel."
+                            link="#rental">
+                            <Image
+                                src="/rental-car.png"
+                                alt="Rental"
+                                width={300}
+                                height={300}
+                                className=""
+                            />
+                        </IntegrationCard>
+
+                        <IntegrationCard
+                            title="Intercity"
+                            description="Travel between cities with Tranzit. Book a ride and go!"
+                            link="#intercity">
+                            <Image
+                                src="/intercity.png"
+                                alt="Intercity"
+                                width={300}
+                                height={300}
+                                className=""
+                            />
+                        </IntegrationCard>
+
+                        <IntegrationCard
+                            title="Food"
+                            description="Order food from your favorite restaurants and have it delivered to your doorstep."
+                            link="#food">
+                            <Image
+                                src="/food.png"
+                                alt="Food"
+                                width={300}
+                                height={300}
+                                className=""
+                            />
+                        </IntegrationCard>
+
+                        <IntegrationCard
+                            title="Grocery"
+                            description="Order grocery from your favorite stores and have it delivered to your doorstep."
+                            link="#grocery">
+                            <Image
+                                src="/grocery.png"
+                                alt="Grocery"
+                                width={300}
+                                height={300}
+                                className=""
+                            />
                         </IntegrationCard>
                     </div>
                 </div>
@@ -42,29 +99,31 @@ export default function IntegrationsSection() {
     )
 }
 
-const IntegrationCard = ({ 
-    title, 
-    description, 
-    children, 
-    cardClassName = '',
-    iconColor = ''
-}: { 
-    title: string; 
-    description: string; 
-    children: React.ReactNode;
-    cardClassName?: string;
-    iconColor?: string;
-}) => {
+const IntegrationCard = ({ title, description, children, link = 'https://github.com/jvcByte' }: { title: string; description: string; children: React.ReactNode; link?: string }) => {
     return (
-        <Card className={`p-6 mx-2 ${cardClassName}`}>
-            <div className="relative">
-                <div className={`flex items-center justify-center size-10 rounded-full border-2 p-2 ${iconColor}`}>
-                    <div className="*:size-7 text-white">{children}</div>
-                </div>
-
-                <div className="space-y-2 py-6">
-                    <h3 className="text-3xl font-bold text-gray-800">{title}</h3>
-                    <p className="text-muted-foreground line-clamp-2 text-xl">{description}</p>
+        <Card className="p-6 h-full">
+            <div className="flex flex-col h-full">
+                <div className="flex-1 flex flex-col">
+                    <div className="mb-4 flex-1">
+                        <div className="relative w-full h-48 mb-4 overflow-hidden rounded-lg">
+                            {children}
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+                        <p className="text-muted-foreground text-sm mb-4">{description}</p>
+                    </div>
+                    
+                    <div className="mt-auto">
+                        <Button
+                            asChild
+                            variant="secondary"
+                            size="sm"
+                            className="w-full justify-between">
+                            <Link href={link}>
+                                <span>Learn more</span>
+                                <ChevronRight className="h-4 w-4" />
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </Card>
