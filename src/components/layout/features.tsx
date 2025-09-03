@@ -14,7 +14,8 @@ export default function IntegrationsSection() {
                         <h2 className="text-balance text-3xl font-semibold md:text-4xl">Options</h2>
                     </div>
 
-                    <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        {/* First three cards - always visible */}
                         <IntegrationCard
                             title="Ride"
                             description="Go anywhere, anytime with Tranzit. Request a ride, hop in, and go!"
@@ -42,7 +43,7 @@ export default function IntegrationsSection() {
                         </IntegrationCard>
 
                         <IntegrationCard
-                            title="Rental car"
+                            title="Rental cars"
                             description="Rent a car from Tranzit and save money while you travel."
                             link="#rental">
                             <Image
@@ -54,44 +55,51 @@ export default function IntegrationsSection() {
                             />
                         </IntegrationCard>
 
-                        <IntegrationCard
-                            title="Intercity"
-                            description="Travel between cities with Tranzit. Book a ride and go!"
-                            link="#intercity">
-                            <Image
-                                src="/intercity.png"
-                                alt="Intercity"
-                                width={300}
-                                height={300}
-                                className=""
-                            />
-                        </IntegrationCard>
+                        {/* Last three cards - hidden on mobile */}
+                        <div className="hidden sm:block">
+                            <IntegrationCard
+                                title="Intercity"
+                                description="Travel between cities with Tranzit. Book a ride and go!"
+                                link="#intercity">
+                                <Image
+                                    src="/intercity.png"
+                                    alt="Intercity"
+                                    width={300}
+                                    height={300}
+                                    className=""
+                                />
+                            </IntegrationCard>
+                        </div>
 
-                        <IntegrationCard
-                            title="Food"
-                            description="Order food from your favorite restaurants and have it delivered to your doorstep."
-                            link="#food">
-                            <Image
-                                src="/food.png"
-                                alt="Food"
-                                width={300}
-                                height={300}
-                                className=""
-                            />
-                        </IntegrationCard>
+                        <div className="hidden sm:block">
+                            <IntegrationCard
+                                title="Food"
+                                description="Order food from your favorite restaurants and have it delivered to your doorstep."
+                                link="#food">
+                                <Image
+                                    src="/food.png"
+                                    alt="Food"
+                                    width={300}
+                                    height={300}
+                                    className=""
+                                />
+                            </IntegrationCard>
+                        </div>
 
-                        <IntegrationCard
-                            title="Grocery"
-                            description="Order grocery from your favorite stores and have it delivered to your doorstep."
-                            link="#grocery">
-                            <Image
-                                src="/grocery.png"
-                                alt="Grocery"
-                                width={300}
-                                height={300}
-                                className=""
-                            />
-                        </IntegrationCard>
+                        <div className="hidden sm:block">
+                            <IntegrationCard
+                                title="Grocery"
+                                description="Order grocery from your favorite stores and have it delivered to your doorstep."
+                                link="#grocery">
+                                <Image
+                                    src="/grocery.png"
+                                    alt="Grocery"
+                                    width={300}
+                                    height={300}
+                                    className=""
+                                />
+                            </IntegrationCard>
+                        </div>
                     </div>
                 </div>
             </div>
