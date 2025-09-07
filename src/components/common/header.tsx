@@ -33,18 +33,15 @@ export const HeroHeader = () => {
             <nav
                 data-state={menuState && 'active'}
                 className={cn('fixed z-20 w-full border-b transition-colors duration-150 bg-background', scrolled)}>
-                <div className="m-auto max-w-[1660px] px-6">
-                    <div className="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+                <div className="m-auto max-w-[1450px] px-6">
+                    <div className="flex flex-wrap items-center justify-between gap-6 lg:gap-0 md:py-1 py-3">
                         <div className="flex w-full items-center justify-between lg:w-auto gap-5">
                             <Link
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <p className='md:text-[45px] text-xl font-700 font-bold text-[#99da3d]'>Tranzit</p>
+                                <p className='sm:text-2xl md:text-[40px] text-xl font-700 font-bold text-[#99da3d]'>Tranzit</p>
                             </Link>
-
-                            
-
                             <div className='flex items-center gap-2'>
                                 <div className="flex w-full flex-row gap-2 lg:hidden">
                                     <Button

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useState } from "react"
 import Link from "next/link"
-export default function DropdownMenuWithIcons() {
+export default function RideDropDownMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -27,7 +27,11 @@ export default function DropdownMenuWithIcons() {
                 <DropdownMenuSeparator />
                 <DropdownMenuLabel>Reserve a Ride</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuLabel>Request a Ride</DropdownMenuLabel>
+                <DropdownMenuLabel>See prices</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Explore ride options</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Airport rides</DropdownMenuLabel>
             </DropdownMenuContent>
         </DropdownMenu>
     )

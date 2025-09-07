@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Input } from '../ui/input'
 import { Dot, LocateFixed, TentTree } from 'lucide-react'
 import { IconSquareFilled } from '@tabler/icons-react'
-import DropdownMenuWithIcons from './drop-down-menu-with-icon'
+import RideDropDownMenu from './ride-drop-down-menu'
 
 const transitionVariants = {
     item: {
@@ -33,6 +33,18 @@ export default function HeroSection() {
     return (
         <>
             <main className="relative overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
+                <AnimatedGroup>
+                    <div className='hidden md:flex items-center justify-between max-w-[1450px] mx-auto mt-16 p-5 w-full'>
+                        <span className='font-bold text-2xl'>Ride</span>
+                        <ul className='flex gap-5'>
+                            <Link href="#" className='text-gray-700 dark:text-[rgba(255,255,255,0.7)]'>Request a ride</Link>
+                            <Link href="#" className='text-gray-700 dark:text-[rgba(255,255,255,0.7)]'>Reserve a ride</Link>
+                            <Link href="#" className='text-gray-700 dark:text-[rgba(255,255,255,0.7)]'>See prices</Link>
+                            <Link href="#" className='text-gray-700 dark:text-[rgba(255,255,255,0.7)]'>Explore ride options</Link>
+                            <Link href="#" className='text-gray-700 dark:text-[rgba(255,255,255,0.7)]'>Airport rides</Link>
+                        </ul>
+                    </div>
+                </AnimatedGroup>
                 <div className="absolute inset-0 -z-10">
                     <div className="relative w-full h-full dark:brightness-0 dark:invert dark:opacity-7">
                         <Image
@@ -45,16 +57,17 @@ export default function HeroSection() {
                     </div>
                 </div>
                 <section className="relative">
-                    <div className="flex flex-col gap-48 md:flex-row items-center justify-center relative mx-auto max-w-7xl px-6 pb-20 pt-32 lg:pt-48">
+                    <div className="flex flex-col gap-48 md:flex-row items-center justify-center relative mx-auto max-w-7xl px-6 pb-20 pt-30 md:pt-10">
                         <div className="relative z-10 mx-auto max-w-7xl">
                             <div className='mb-9 mt-[-55] md:hidden'>
-                                <DropdownMenuWithIcons />
+                                <RideDropDownMenu />
                             </div>
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
                                 as="h1"
-                                className=" md:leading-[4rem] font-[800] text-4xl md:text-[52px]">
+                                className=" md:leading-[4rem] font-[800] text-4xl md:text-[52px]"
+                            >
                                 Request a ride for now or later
                             </TextEffect>
                             <TextEffect
@@ -63,7 +76,8 @@ export default function HeroSection() {
                                 speedSegment={0.3}
                                 delay={0.5}
                                 as="p"
-                                className="mx-auto mt-4 max-w-5xl font-medium md:text-2xl text-pretty text-md">
+                                className="mx-auto mt-4 max-w-5xl font-medium md:text-2xl text-pretty text-md"
+                            >
                                 Add your trip details, hop in, and go.
                             </TextEffect>
                             <AnimatedGroup
@@ -138,7 +152,7 @@ export default function HeroSection() {
                                 </div>
                             </AnimatedGroup>
                         </div>
-                        <div className="flex hidden md:block items-center justify-center">
+                        <div className="flex hidden lg:block items-center justify-center">
                             <AnimatedGroup
                                 variants={{
                                     container: {
