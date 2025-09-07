@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Input } from '../ui/input'
 import { Dot, LocateFixed, TentTree } from 'lucide-react'
 import { IconSquareFilled } from '@tabler/icons-react'
+import DropdownMenuWithIcons from './drop-down-menu-with-icon'
 
 const transitionVariants = {
     item: {
@@ -46,6 +47,9 @@ export default function HeroSection() {
                 <section className="relative">
                     <div className="flex flex-col gap-48 md:flex-row items-center justify-center relative mx-auto max-w-7xl px-6 pb-20 pt-32 lg:pt-48">
                         <div className="relative z-10 mx-auto max-w-7xl">
+                            <div className='mb-9 mt-[-55] md:hidden'>
+                                <DropdownMenuWithIcons />
+                            </div>
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
